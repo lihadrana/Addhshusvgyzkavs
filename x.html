@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Lucid Earn Pro | NIGHTFALL EDITION</title>
+    
+    <!-- Telegram WebApp Script -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- AdsGram Ad Script -->
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background: #0a0a0f;
+            color: #eef5ff;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* 🔥 DARK PREMIUM NEON BG — Red/Black/Neon Pulse */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(circle at 30% 10%, #1a0303, #000000, #0b0000);
+            background-size: 200% 200%;
+            animation: darkNeonPulse 14s ease infinite;
+        }
+
+        @keyframes darkNeonPulse {
+            0% { background: radial-gradient(circle at 25% 20%, #2a0000, #050000, #0f0000);}
+            50% { background: radial-gradient(circle at 75% 70%, #3a0505, #000000, #120101);}
+            100% { background: radial-gradient(circle at 25% 20%, #2a0000, #050000, #0f0000);}
+        }
+
+        /* Cyber Glassmorphism — Dark with neon red/green edges */
+        .glass-card {
+            background: rgba(10, 8, 15, 0.75);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(0, 255, 100, 0.25);
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(0, 255, 0, 0.15), 0 0 12px rgba(0, 255, 100, 0.2);
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 1), 0 0 0 1px #00ff88, 0 0 18px #00ff66;
+            background: rgba(12, 8, 20, 0.85);
+            border-color: #ff2a2a;
+        }
+
+        /* Premium Neon Gradient Button — Green/Red Mix */
+        .btn-premium {
+            background: linear-gradient(105deg, #00ff99, #00cc6a);
+            border: none;
+            color: #0a0a0f;
+            font-weight: 800;
+            border-radius: 60px;
+            transition: all 0.25s ease;
+            box-shadow: 0 6px 14px rgba(0, 255, 100, 0.35);
+            text-shadow: 0 0 2px rgba(0,0,0,0.2);
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 22px rgba(0, 255, 120, 0.6);
+            background: linear-gradient(105deg, #2effb0, #00e67a);
+        }
+
+        .btn-premium:active {
+            transform: scale(0.97);
+        }
+
+        /* Secondary Dark Button with Red border */
+        .btn-secondary {
+            background: rgba(20, 15, 25, 0.9);
+            border: 1px solid rgba(255, 50, 50, 0.6);
+            border-radius: 60px;
+            backdrop-filter: blur(4px);
+            font-weight: 600;
+            color: #ffc9c9;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: #ff2c2c;
+            color: #ffeded;
+            box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Balance Card — Crimson/Neon Green energy */
+        .balance-card {
+            background: linear-gradient(135deg, #0e0303, #1c0a0a, #0a0200);
+            border-radius: 36px;
+            border: 1px solid rgba(0, 255, 100, 0.5);
+            box-shadow: 0 25px 35px -12px rgba(255, 0, 0, 0.3), inset 0 1px 0 rgba(0,255,100,0.2);
+            color: #ffffff;
+        }
+
+        /* Stat Cards — Dark with neon trim */
+        .stat-card {
+            background: rgba(8, 5, 15, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 28px;
+            border: 1px solid rgba(0, 255, 120, 0.3);
+            transition: all 0.2s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+        }
+
+        .stat-card:hover {
+            background: rgba(20, 8, 20, 0.85);
+            border-color: #ff3a3a;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Task card — Dark premium */
+        .task-card {
+            background: rgba(12, 8, 20, 0.75);
+            backdrop-filter: blur(8px);
+            border-radius: 26px;
+            border: 1px solid rgba(0, 255, 100, 0.2);
+            transition: all 0.25s;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .task-card:hover {
+            background: #14101fcc;
+            border-color: #ff4545;
+            transform: translateX(6px);
+            box-shadow: 0 0 14px rgba(255, 0, 0, 0.25);
+        }
+
+        /* Bottom Nav — Dark Neon */
+        .nav-bar {
+            background: rgba(8, 5, 12, 0.92);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(0, 255, 100, 0.4);
+            border-radius: 32px 32px 0 0;
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .nav-item {
+            transition: all 0.25s;
+            border-radius: 30px;
+            padding: 6px 0;
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #00ff99, #00aa55);
+            box-shadow: 0 4px 15px rgba(0, 255, 100, 0.5);
+        }
+
+        .nav-item.active i, 
+        .nav-item.active span {
+            color: #000000 !important;
+            font-weight: 700;
+        }
+
+        /* Input Fields Dark Premium */
+        .input-premium {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid rgba(0, 255, 100, 0.4);
+            border-radius: 60px;
+            padding: 14px 20px;
+            color: #ffffff;
+            transition: all 0.2s;
+            box-shadow: inset 0 1px 2px #00000030;
+        }
+
+        .input-premium:focus {
+            outline: none;
+            border-color: #ff2e2e;
+            box-shadow: 0 0 0 3px rgba(255, 50, 50, 0.25), inset 0 0 4px #00ff88;
+            background: #000000cc;
+        }
+
+        .input-premium::placeholder {
+            color: #aa9988;
+        }
+
+        /* Scrollbar Neon */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a0a0a;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #00ff99, #ff3333);
+            border-radius: 10px;
+        }
+
+        /* Animations */
+        @keyframes fadeUpGlow {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+                filter: blur(2px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+                filter: blur(0);
+            }
+        }
+
+        .animate-fade-up {
+            animation: fadeUpGlow 0.5s ease forwards;
+        }
+
+        /* Ad Status Neon */
+        .ad-status {
+            position: fixed;
+            bottom: 100px;
+            left: 20px;
+            right: 20px;
+            background: linear-gradient(105deg, #00bb55, #009944);
+            color: #000;
+            text-align: center;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 800;
+            z-index: 1000;
+            box-shadow: 0 10px 20px rgba(0, 255, 100, 0.5);
+            border: 1px solid #00ff88;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        .badge-premium {
+            background: linear-gradient(135deg, #ff3333, #b30000);
+            border-radius: 40px;
+            padding: 5px 14px;
+            font-size: 11px;
+            font-weight: 800;
+            color: white;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 6px red;
+        }
+
+        .history-item {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 255, 150, 0.3);
+        }
+
+        .custom-alert {
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 36px;
+            border: 1px solid #00ff88;
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 255, 0, 0.3);
+        }
+
+        .support-float {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #ff2e2e, #cc0000);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            box-shadow: 0 6px 18px rgba(255, 0, 0, 0.6);
+            transition: all 0.2s;
+            border: 2px solid #00ff99;
+        }
+
+        .support-float:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 18px #ff4444;
+        }
+
+        .job-btn {
+            background: linear-gradient(105deg, #00ff99, #00aa55);
+            border-radius: 40px;
+            font-weight: bold;
+            color: black;
+        }
+        
+        .job-btn-disabled {
+            background: linear-gradient(105deg, #4a3a3a, #2a1e1e);
+            opacity: 0.7;
+            cursor: default;
+            color: #aaa;
+        }
+
+        .icon-gradient {
+            background: linear-gradient(135deg, #00ff99, #ff3333);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00ff99, #ff4444, transparent);
+            margin: 16px 0;
+        }
+        
+        h1, h2, h3 {
+            letter-spacing: -0.3px;
+        }
+        
+        .text-white\/70, .text-white\/80, .text-white\/60 {
+            color: #cbcbcb !important;
+        }
+
+        .text-amber-800\/60, .text-amber-800\/70 {
+            color: #cfa78b !important;
+        }
+
+        .bg-gradient-to-r.from-orange-600.to-red-600 {
+            background: linear-gradient(135deg, #00ff99, #ff3333) !important;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+    </style>
+</head>
+<body>
+
+<div class="animated-bg"></div>
+
+<!-- Main Container -->
+<div id="appContainer" class="max-w-md mx-auto px-4 py-4">
+    
+    <!-- Header - Neon Dark -->
+    <header class="flex items-center justify-between mb-6 animate-fade-up">
+        <div>
+            <h1 class="text-3xl font-black bg-gradient-to-r from-green-400 to-red-500 bg-clip-text text-transparent drop-shadow-md">
+                🔥 LUCID EARN PRO
+            </h1>
+            <p class="text-emerald-300/70 text-xs mt-1 font-semibold tracking-wide">⚡ NIGHTFALL | HIGH REWARDS</p>
+        </div>
+        <div class="flex items-center gap-3">
+            <button id="darkModeToggle" class="w-10 h-10 rounded-full bg-black/50 shadow-md flex items-center justify-center backdrop-blur-sm text-green-400 border border-green-500/30">
+                <i data-lucide="moon" class="w-5 h-5"></i>
+            </button>
+            <div id="notificationBell" class="relative cursor-pointer w-10 h-10 rounded-full bg-black/50 shadow-md flex items-center justify-center border border-red-500/40">
+                <i data-lucide="bell" class="w-5 h-5 text-red-400"></i>
+                <div id="notificationDot" class="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full hidden"></div>
+            </div>
+            <div onclick="navigateTo('profile-page')" class="cursor-pointer w-10 h-10 rounded-full bg-gradient-to-r from-green-500 to-red-600 flex items-center justify-center shadow-lg">
+                <i data-lucide="user" class="w-5 h-5 text-white"></i>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HOME PAGE -->
+        <div id="home-page" class="sub-page space-y-5 animate-fade-up">
+            <!-- Balance Card (Dark Red/Neon Green) -->
+            <div class="balance-card p-5">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-emerald-300/80 text-sm font-medium">💸 TOTAL BALANCE</p>
+                        <p class="text-4xl font-extrabold mt-1 text-white drop-shadow-lg">৳<span id="coinBalance">0</span></p>
+                        <p class="text-emerald-300/60 text-xs mt-2">≈ $<span id="usdBalance">0.00</span> USD</p>
+                    </div>
+                    <div class="text-right">
+                        <div class="badge-premium">🔥 NIGHT VIP</div>
+                        <p class="text-red-300/50 text-xs mt-2">instant payout</p>
+                    </div>
+                </div>
+                <div class="divider my-2"></div>
+                <div class="flex justify-between items-center">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="trending-up" class="w-4 h-4 text-green-400"></i>
+                        <span class="text-emerald-300/70 text-sm">Today's Earnings</span>
+                        <span class="text-white font-bold">৳<span id="todayEarning">0</span></span>
+                    </div>
+                    <button id="homeWithdrawBtn" class="btn-premium px-5 py-2 text-sm font-semibold">
+                        Withdraw <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Stats Row (Jobs Done / Ads Watched) -->
+            <div class="grid grid-cols-2 gap-3">
+                <div class="stat-card p-3 text-center">
+                    <i data-lucide="briefcase" class="w-5 h-5 mx-auto mb-1 text-green-400"></i>
+                    <p class="text-red-300/70 text-xs">Jobs Done</p>
+                    <p class="text-xl font-black text-green-300"><span id="jobsDoneCount">0</span></p>
+                </div>
+                <div class="stat-card p-3 text-center">
+                    <i data-lucide="eye" class="w-5 h-5 mx-auto mb-1 text-green-400"></i>
+                    <p class="text-red-300/70 text-xs">Ads Watched</p>
+                    <p class="text-xl font-black text-white"><span id="adsWatchedCount">0</span>/<span id="dailyLimit">20</span></p>
+                </div>
+            </div>
+
+            <!-- Daily Missions -->
+            <div>
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="text-lg font-extrabold text-green-300">✨ NIGHT MISSIONS</h2>
+                    <p class="text-red-400/80 text-xs">left: <span id="adsLeftCount">20</span></p>
+                </div>
+                <div class="space-y-3">
+                    <!-- Watch Ad -->
+                    <div class="task-card p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-600 to-emerald-700 flex items-center justify-center shadow-md">
+                                <i data-lucide="video" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-white">Watch AdsGram Video</h3>
+                                <p class="text-green-300/60 text-xs">Rewarded • ৳10 each view</p>
+                            </div>
+                        </div>
+                        <button id="watchAdBtn" class="btn-premium px-5 py-2 text-sm font-semibold">
+                            Watch <i class="fas fa-play ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Daily Jobs -->
+                    <div class="task-card p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-700 to-pink-800 flex items-center justify-center">
+                                <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-white">⚡ 20x REWARD JOBS</h3>
+                                <p class="text-green-300/60 text-xs">Each gives ৳10 + cooldown</p>
+                            </div>
+                        </div>
+                        <button onclick="navigateTo('daily-jobs-page')" class="btn-secondary px-5 py-2 text-sm font-semibold">
+                            Start <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+
+                    <!-- Telegram Channel -->
+                    <div class="task-card p-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="w-12 h-12 rounded-full bg-gradient-to-r from-sky-700 to-indigo-800 flex items-center justify-center">
+                                <i data-lucide="megaphone" class="w-6 h-6 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-white">Join Dark Pulse TG</h3>
+                                <p class="text-green-300/60 text-xs">bonus alerts & tasks</p>
+                            </div>
+                        </div>
+                        <button id="telegramJoinBtn" class="btn-secondary px-5 py-2 text-sm font-semibold">
+                            Join <i class="fab fa-telegram ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referral Section -->
+            <div class="glass-card p-4">
+                <div class="flex items-center justify-between mb-2">
+                    <h3 class="font-black text-green-300">👥 REFERRAL BLAZE</h3>
+                    <span class="badge-premium">+৳50 per referral</span>
+                </div>
+                <p class="text-red-300/70 text-xs mb-3">Invite friends, get 50৳ when they start earning!</p>
+                <div class="flex gap-2">
+                    <input type="text" id="referralLink" readonly class="input-premium flex-1 text-sm font-mono" value="Loading...">
+                    <button id="copyReferralBtn" class="btn-premium px-4 py-2 text-sm">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Page -->
+        <div id="wallet-page" class="sub-page space-y-5 hidden animate-fade-up">
+            <h2 class="text-2xl font-black text-center bg-gradient-to-r from-green-400 to-red-500 bg-clip-text text-transparent">💸 CASH VAULT</h2>
+            <div class="glass-card p-5">
+                <h3 class="font-black mb-4 text-white">Withdraw Funds</h3>
+                <div class="balance-card p-4 mb-4 text-center">
+                    <p class="text-green-300/80 text-sm">Available Balance</p>
+                    <p class="text-3xl font-black text-white">৳<span id="walletBalance">0</span></p>
+                    <p class="text-red-400/70 text-xs">Min Withdrawal: ৳2000</p>
+                </div>
+                <input type="number" id="withdrawAmount" placeholder="Amount (৳)" class="input-premium w-full mb-3">
+                <select id="withdrawMethod" class="input-premium w-full mb-3">
+                    <option value="">Select Method</option>
+                    <option value="Bkash">bKash</option>
+                    <option value="Nagad">Nagad</option>
+                    <option value="Rocket">Rocket</option>
+                </select>
+                <div id="paymentDetailsContainer"></div>
+                <button id="withdrawSubmitBtn" class="btn-premium w-full py-3 mt-3 font-bold">Request Withdrawal</button>
+            </div>
+            <div class="glass-card p-5">
+                <h3 class="font-black flex gap-2 items-center text-green-300"><i data-lucide="clock"></i> Withdrawal History</h3>
+                <div id="withdrawalHistoryList" class="space-y-2 max-h-64 overflow-y-auto mt-2"></div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profile-page" class="sub-page space-y-5 hidden animate-fade-up">
+            <h2 class="text-2xl font-black text-center bg-gradient-to-r from-green-400 to-red-500 bg-clip-text text-transparent">🌟 DARK PROFILE</h2>
+            <div class="glass-card p-6 text-center">
+                <img id="profilePhoto" src="https://placehold.co/100x100/ff3333/black?text=VIP" class="w-24 h-24 rounded-full mx-auto border-4 border-green-500 shadow-xl">
+                <h3 id="profileName" class="text-xl font-black mt-3 text-white">Username</h3>
+                <p id="profileUsername" class="text-green-300/70 text-sm">@handle</p>
+                <div class="badge-premium inline-block mt-2">🔥 NIGHT EARNER</div>
+            </div>
+            <div class="glass-card p-5">
+                <h3 class="font-black mb-3 text-green-300">Account Info</h3>
+                <div class="space-y-2">
+                    <div class="flex justify-between py-2 border-b border-red-800"><span>Joined Via</span><span id="joinedVia">Telegram</span></div>
+                    <div class="flex justify-between py-2 border-b border-red-800"><span>User ID</span><span id="profileUserId">-</span></div>
+                    <div class="flex justify-between py-2"><span>Total Earned</span><span id="totalEarned" class="text-green-400 font-black">৳0</span></div>
+                </div>
+            </div>
+            <div id="adminAccessPanel" class="hidden"><button onclick="navigateTo('admin-panel')" class="btn-premium w-full py-3">Admin Panel</button></div>
+        </div>
+
+        <div id="notifications-page" class="sub-page hidden animate-fade-up"><h2 class="text-2xl font-bold text-center">🔔 Notifications</h2><div id="notificationsList" class="space-y-3 mt-4"></div></div>
+
+        <div id="daily-jobs-page" class="sub-page space-y-4 hidden animate-fade-up">
+            <div class="flex items-center justify-between"><button onclick="navigateTo('home-page')" class="btn-secondary px-4 py-2 text-sm"><i class="fas fa-arrow-left"></i> Back</button><h2 class="text-xl font-black text-green-300">💼 DAILY BOUNTIES</h2><div class="w-16"></div></div>
+            <div class="glass-card p-4 text-center"><i data-lucide="sparkles" class="w-8 h-8 mx-auto text-green-400 mb-2"></i><h3 class="font-black text-white">Watch ad & earn instantly</h3><p class="text-sm text-red-300">20 unique tasks, ৳10 each | 8h cooldown</p></div>
+            <div id="dailyJobsContainer" class="space-y-3 max-h-96 overflow-y-auto pb-4"></div>
+        </div>
+
+        <div id="admin-panel" class="sub-page space-y-5 hidden animate-fade-up">
+            <div class="flex items-center justify-between"><button onclick="navigateTo('profile-page')" class="btn-secondary px-4 py-2"><i class="fas fa-arrow-left"></i> Back</button><h2 class="text-xl font-black text-red-400">📊 ADMIN NEXUS</h2><div></div></div>
+            <div class="glass-card p-5"><h3 class="font-black text-green-300">Send Bonus</h3><input type="number" id="bonusAmount" placeholder="Bonus ৳" class="input-premium w-full mb-3"><button id="sendBonusBtn" class="btn-premium w-full">Distribute</button></div>
+            <div class="glass-card p-5"><h3 class="font-black">Platform Pulse</h3><div class="space-y-2"><div class="flex justify-between"><span>AdsGram</span><span class="text-green-400">● Active</span></div><div class="flex justify-between"><span>Block ID</span><span class="font-mono">int-25417</span></div><div class="flex justify-between"><span>Today's Ads</span><span id="adminAdsCount">0/20</span></div><div class="flex justify-between"><span>Total Users</span><span id="totalUsersCount">0</span></div></div></div>
+            <div class="glass-card p-5"><button id="sendManualReportBtn" class="btn-secondary w-full">Send Report</button></div>
+        </div>
+    </main>
+
+    <nav class="nav-bar fixed bottom-0 left-0 right-0 max-w-md mx-auto mt-6">
+        <div class="flex justify-around py-2">
+            <div class="nav-item active text-center py-2 px-4 cursor-pointer" data-page="home-page"><i data-lucide="home" class="w-6 h-6 mx-auto text-green-300"></i><span class="text-xs block mt-1 font-medium">Home</span></div>
+            <div class="nav-item text-center py-2 px-4 cursor-pointer" data-page="wallet-page"><i data-lucide="wallet" class="w-6 h-6 mx-auto text-red-400"></i><span class="text-xs block mt-1">Wallet</span></div>
+            <div class="nav-item text-center py-2 px-4 cursor-pointer" data-page="daily-jobs-page"><i data-lucide="briefcase" class="w-6 h-6 mx-auto text-green-300"></i><span class="text-xs block mt-1">Jobs</span></div>
+        </div>
+    </nav>
+</div>
+
+<div id="supportBtn" class="support-float" onclick="openSupportPage()"><i class="fas fa-headset text-white text-xl"></i></div>
+<div id="customAlert" class="fixed inset-0 bg-black/80 flex items-center justify-center z-50 hidden p-4"><div class="custom-alert max-w-sm w-full p-6 text-center"><i data-lucide="bell" class="w-12 h-12 mx-auto text-green-400 mb-3"></i><p id="alertMessage" class="text-white mb-4"></p><button id="alertOkBtn" class="btn-premium px-6 py-2">Got it</button></div></div>
+
+<script>
+    const CONFIG = { app: { minWithdrawal: 2000, dailyAdLimit: 20, adReward: 10, dailyJobReward: 10, referralBonus: 50 }, adsgram: { enabled: true, blockId: "int-25417", rewardAmount: 10 }, social: { telegram: "https://t.me/+tLB334Ko71tjY2Y1" }, bot: { adminChatId: "7793213912" }, support: { telegraphUrl: "https://t.me/smartmoneypro_bot" }, dailyJobs: 20 };
+    let currentUser = null, userData = null, adsGramReady = false, adsGramCount = 0, AdController = null, isAdShowing = false;
+    let dailyStats = { date: new Date().toISOString().split('T')[0], newUsers: 0, totalUsers: 0, adsWatched: 0, jobsCompleted: 0 };
+    const tg = window.Telegram.WebApp;
+    function showAlert(m) { const a=document.getElementById('customAlert'); document.getElementById('alertMessage').textContent=m; a.classList.remove('hidden'); document.getElementById('alertOkBtn').onclick=()=>a.classList.add('hidden'); }
+    function showAdStatus(m,isErr=false){ document.querySelectorAll('.ad-status').forEach(e=>e.remove()); let d=document.createElement('div'); d.className='ad-status'; d.style.background=isErr?'#cc3300':'#00aa55'; d.innerHTML=m; document.body.appendChild(d); setTimeout(()=>d.remove(),3000);}
+    function saveUserData(){ if(currentUser) localStorage.setItem(`user_${currentUser.id}`, JSON.stringify(userData)); }
+    function loadUserData(){ if(currentUser) return JSON.parse(localStorage.getItem(`user_${currentUser.id}`)); return null; }
+    function updateUI(){ if(!userData) return; document.getElementById('coinBalance').innerText=userData.balance||0; document.getElementById('walletBalance').innerText=userData.balance||0; document.getElementById('usdBalance').innerText=((userData.balance||0)/120).toFixed(2); document.getElementById('adsWatchedCount').innerText=adsGramCount; document.getElementById('adsLeftCount').innerText=CONFIG.app.dailyAdLimit-adsGramCount; document.getElementById('adminAdsCount').innerText=`${adsGramCount}/${CONFIG.app.dailyAdLimit}`; document.getElementById('profileName').innerText=userData.name||'User'; document.getElementById('profileUsername').innerText=`@${userData.username||'user'}`; document.getElementById('profileUserId').innerText=currentUser?.id||''; document.getElementById('joinedVia').innerText=userData.joinedVia||'Telegram'; document.getElementById('jobsDoneCount').innerText=userData.jobsCompletedCount||0; document.getElementById('totalEarned').innerText=userData.totalEarned||userData.balance; }
+    function initializeAdsGram(){ if(!CONFIG.adsgram.enabled) return; try{ if(typeof window.Adsgram!=='undefined'){ AdController=window.Adsgram.init({blockId:CONFIG.adsgram.blockId,debug:true}); if(AdController) adsGramReady=true; } else setTimeout(initializeAdsGram,1500); }catch(e){ setTimeout(initializeAdsGram,2000); } }
+    async function watchAd(cb){ if(!adsGramReady){ showAlert("Loading ad service..."); return false; } if(isAdShowing){ showAlert("Ad playing!"); return false; } if(adsGramCount>=CONFIG.app.dailyAdLimit){ showAlert(`Daily limit reached (${adsGramCount}/${CONFIG.app.dailyAdLimit})`); return false; } isAdShowing=true; showAdStatus("🎬 Loading premium ad..."); try{ await AdController.show(); showAdStatus("✅ +৳10 credited!"); adsGramCount++; userData.adsGramCount=adsGramCount; userData.balance=(userData.balance
